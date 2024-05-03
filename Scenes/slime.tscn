@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1mv5i6be3kyc"]
+
+[ext_resource type="Texture2D" uid="uid://bc05xjy1pubt0" path="res://Assets/sprites/slime_green.png" id="1_ivihc"]
+[ext_resource type="Script" path="res://Scenes/slime.gd" id="1_mtrln"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t2ei"]
+atlas = ExtResource("1_ivihc")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp18g"]
+atlas = ExtResource("1_ivihc")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b4kdd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t2ei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp18g")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqu70"]
+size = Vector2(12, 11)
+
+[node name="Slime" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_mtrln")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_b4kdd")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.777179
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_qqu70")
